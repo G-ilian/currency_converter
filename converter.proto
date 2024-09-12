@@ -1,0 +1,25 @@
+syntax="proto3";
+
+package currency_converter;
+
+message Currency{
+	string code = 1; // e.g: USD, BRL ...
+	string name = 2; // e.g: United States Dollar, Brazilian Real ...
+}
+
+message CurrencyConversionRequest{
+	Currency from = 1;
+	Currency to = 2;
+	double amount = 3;
+}
+
+message CurrencyConversionResponse{
+	Currency from = 1;
+	Currency to = 2;
+	double initial_amount = 3;
+	double converted_amount = 4;
+}
+
+service CurrencyConverterService{
+	rpc Convert(CurrencyConversionRequest) returns (CurrencyConversionResponse);
+}
