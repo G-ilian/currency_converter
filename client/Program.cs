@@ -14,18 +14,37 @@ namespace client
             await ConvertCurrency(channel);
         }
 
+        
         private static async Task ConvertCurrency(GrpcChannel channel)
         {
             var client = new CurrencyConverterService.CurrencyConverterServiceClient(channel);
-
+            var toCurrencies = new List<Currency>
+            {
+                new Currency { Code = "EUR" },  // Euro
+                new Currency { Code = "GBP" },  // Libra Esterlina
+                new Currency { Code = "JPY" },  // Iene Japonês
+                new Currency { Code = "BRL" },   // Real Brasileiro
+                new Currency { Code = "CADD" },   // Dólar Canadense
+            };
             var response = await client.ConvertAsync(new CurrencyConversionRequest
             {
                 From = new Currency { Code = "USD" },
-                To = new Currency { Code = "EUR" },
-                Amount = 100
+                To = {toCurrencies},
+                Amount = 1
             });
 
-            Console.WriteLine($"100 USD is {response.ConvertedAmount} EUR");
+            try { 
+
+                foreach (var currency in response.ConvertedAmounts)
+                {
+                    Console.WriteLine($"{currency.Key}: {currency.Value}");
+                }
+            
+            }catch(RpcException e)
+            {
+                Console.WriteLine($"An error occured: {e.Message}");
+            }
+            
         }
     }
 }

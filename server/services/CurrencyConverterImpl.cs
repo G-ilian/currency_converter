@@ -19,56 +19,70 @@ namespace server.services
             return Enum.TryParse(typeof(currencyCode), code.ToUpper(),out _);
         }
 
-        public override Task<CurrencyConversionResponse> Convert(CurrencyConversionRequest request, ServerCallContext context)
+        public async override Task<CurrencyConversionResponse> Convert(CurrencyConversionRequest request, ServerCallContext context)
         {
             string apiKey = "KEY_PADRAO";
             string url = $"https://api.currencyapi.com/v3/latest";
 
             HttpResponseMessage httpResponse;
+            var convertedAmounts = new Dictionary<string, double>();
+            var validToCurrencies = new List<Currency>();
 
-            if (!isValidCurrencyCode(request.From.Code) || !isValidCurrencyCode(request.To.Code))
+            foreach(var toCurrency in request.To)
             {
-                throw new RpcException(new Status(StatusCode.InvalidArgument, "Código de moeda não suportado ou inválido"));
+
+                if (!isValidCurrencyCode(toCurrency.Code))
+                {
+                    Console.WriteLine($"Código de moeda inválido: {toCurrency.Code}");
+                    continue;
+                }
+
+                if(!isValidCurrencyCode(request.From.Code))
+                {
+                    throw new RpcException(new Status(StatusCode.InvalidArgument, $"Código de moeda inválido: {request.From.Code}"));
+                }
+
+
+                try
+                {
+                    httpResponse = _httpClient.GetAsync($"{url}?apikey={apiKey}&base_currency={request.From.Code}&currencies={toCurrency.Code}").Result;
+                }
+                catch (Exception ex)
+                {
+                    throw new RpcException(new Status(StatusCode.Internal, $"Falha na requisição HTTP: {ex.Message}"));
+                }
+
+                if (!httpResponse.IsSuccessStatusCode)
+                {
+                    throw new RpcException(new Status(StatusCode.Internal, "Falha ao chamar a API de conversão de moedas."));
+                }
+
+                string responseContent = httpResponse.Content.ReadAsStringAsync().Result;
+                var responseJson = JsonSerializer.Deserialize<Dictionary<string, object>>(responseContent);
+                var data = responseJson["data"] as JsonElement?;
+
+                if (data == null)
+                {
+                    throw new RpcException(new Status(StatusCode.Internal, "Resposta inválida da API de conversão de moedas."));
+                }
+
+                var currencyData = data?.GetProperty(toCurrency.Code);
+                double conversionRate = currencyData?.GetProperty("value").GetDouble() ?? 0.0;
+                double convertedAmount = request.Amount * conversionRate;
+
+                convertedAmounts[toCurrency.Code] = convertedAmount;
+                validToCurrencies.Add(toCurrency);
             }
-
-            try
-            {
-                httpResponse = _httpClient.GetAsync($"{url}?apikey={apiKey}&base_currency={request.From.Code}&currencies={request.To.Code}").Result;
-            }
-            catch (Exception ex)
-            {
-                throw new RpcException(new Status(StatusCode.Internal, $"Falha na requisição HTTP: {ex.Message}"));
-            }
-
-            if (!httpResponse.IsSuccessStatusCode)
-            {
-                throw new RpcException(new Status(StatusCode.Internal, "Falha ao chamar a API de conversão de moedas."));
-            }
-
-            string responseContent = httpResponse.Content.ReadAsStringAsync().Result;
-
-            var responseJson = JsonSerializer.Deserialize<Dictionary<string, object>>(responseContent);
-
-            var data = responseJson["data"] as JsonElement?;
-
-            if (data == null)
-            {
-                throw new RpcException(new Status(StatusCode.Internal, "Resposta inválida da API de conversão de moedas."));
-            }
-
-            var currencyData = data?.GetProperty(request.To.Code);
-            double conversionRate = currencyData?.GetProperty("value").GetDouble() ?? 0.0;
-            double convertedAmount = request.Amount * conversionRate;
 
             var response = new CurrencyConversionResponse
             {
                 From = request.From,
-                To = request.To,
+                To = { validToCurrencies },
                 InitialAmount = request.Amount,
-                ConvertedAmount = convertedAmount
+                ConvertedAmounts = {convertedAmounts},
             };
 
-            return Task.FromResult(response);
+            return await Task.FromResult(response);
         }
     }
 }

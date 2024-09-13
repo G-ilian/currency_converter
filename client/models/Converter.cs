@@ -27,21 +27,24 @@ namespace CurrencyConverter {
             "Cg9jb252ZXJ0ZXIucHJvdG8SEmN1cnJlbmN5X2NvbnZlcnRlciImCghDdXJy",
             "ZW5jeRIMCgRjb2RlGAEgASgJEgwKBG5hbWUYAiABKAkigQEKGUN1cnJlbmN5",
             "Q29udmVyc2lvblJlcXVlc3QSKgoEZnJvbRgBIAEoCzIcLmN1cnJlbmN5X2Nv",
-            "bnZlcnRlci5DdXJyZW5jeRIoCgJ0bxgCIAEoCzIcLmN1cnJlbmN5X2NvbnZl",
-            "cnRlci5DdXJyZW5jeRIOCgZhbW91bnQYAyABKAEipAEKGkN1cnJlbmN5Q29u",
+            "bnZlcnRlci5DdXJyZW5jeRIoCgJ0bxgCIAMoCzIcLmN1cnJlbmN5X2NvbnZl",
+            "cnRlci5DdXJyZW5jeRIOCgZhbW91bnQYAyABKAEipAIKGkN1cnJlbmN5Q29u",
             "dmVyc2lvblJlc3BvbnNlEioKBGZyb20YASABKAsyHC5jdXJyZW5jeV9jb252",
-            "ZXJ0ZXIuQ3VycmVuY3kSKAoCdG8YAiABKAsyHC5jdXJyZW5jeV9jb252ZXJ0",
-            "ZXIuQ3VycmVuY3kSFgoOaW5pdGlhbF9hbW91bnQYAyABKAESGAoQY29udmVy",
-            "dGVkX2Ftb3VudBgEIAEoATKEAQoYQ3VycmVuY3lDb252ZXJ0ZXJTZXJ2aWNl",
-            "EmgKB0NvbnZlcnQSLS5jdXJyZW5jeV9jb252ZXJ0ZXIuQ3VycmVuY3lDb252",
-            "ZXJzaW9uUmVxdWVzdBouLmN1cnJlbmN5X2NvbnZlcnRlci5DdXJyZW5jeUNv",
-            "bnZlcnNpb25SZXNwb25zZWIGcHJvdG8z"));
+            "ZXJ0ZXIuQ3VycmVuY3kSKAoCdG8YAiADKAsyHC5jdXJyZW5jeV9jb252ZXJ0",
+            "ZXIuQ3VycmVuY3kSFgoOaW5pdGlhbF9hbW91bnQYAyABKAESXwoRY29udmVy",
+            "dGVkX2Ftb3VudHMYBCADKAsyRC5jdXJyZW5jeV9jb252ZXJ0ZXIuQ3VycmVu",
+            "Y3lDb252ZXJzaW9uUmVzcG9uc2UuQ29udmVydGVkQW1vdW50c0VudHJ5GjcK",
+            "FUNvbnZlcnRlZEFtb3VudHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUY",
+            "AiABKAE6AjgBMoQBChhDdXJyZW5jeUNvbnZlcnRlclNlcnZpY2USaAoHQ29u",
+            "dmVydBItLmN1cnJlbmN5X2NvbnZlcnRlci5DdXJyZW5jeUNvbnZlcnNpb25S",
+            "ZXF1ZXN0Gi4uY3VycmVuY3lfY29udmVydGVyLkN1cnJlbmN5Q29udmVyc2lv",
+            "blJlc3BvbnNlYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::CurrencyConverter.Currency), global::CurrencyConverter.Currency.Parser, new[]{ "Code", "Name" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CurrencyConverter.CurrencyConversionRequest), global::CurrencyConverter.CurrencyConversionRequest.Parser, new[]{ "From", "To", "Amount" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::CurrencyConverter.CurrencyConversionResponse), global::CurrencyConverter.CurrencyConversionResponse.Parser, new[]{ "From", "To", "InitialAmount", "ConvertedAmount" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::CurrencyConverter.CurrencyConversionResponse), global::CurrencyConverter.CurrencyConversionResponse.Parser, new[]{ "From", "To", "InitialAmount", "ConvertedAmounts" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
           }));
     }
     #endregion
@@ -325,7 +328,7 @@ namespace CurrencyConverter {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public CurrencyConversionRequest(CurrencyConversionRequest other) : this() {
       from_ = other.from_ != null ? other.from_.Clone() : null;
-      to_ = other.to_ != null ? other.to_.Clone() : null;
+      to_ = other.to_.Clone();
       amount_ = other.amount_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -350,14 +353,13 @@ namespace CurrencyConverter {
 
     /// <summary>Field number for the "to" field.</summary>
     public const int ToFieldNumber = 2;
-    private global::CurrencyConverter.Currency to_;
+    private static readonly pb::FieldCodec<global::CurrencyConverter.Currency> _repeated_to_codec
+        = pb::FieldCodec.ForMessage(18, global::CurrencyConverter.Currency.Parser);
+    private readonly pbc::RepeatedField<global::CurrencyConverter.Currency> to_ = new pbc::RepeatedField<global::CurrencyConverter.Currency>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::CurrencyConverter.Currency To {
+    public pbc::RepeatedField<global::CurrencyConverter.Currency> To {
       get { return to_; }
-      set {
-        to_ = value;
-      }
     }
 
     /// <summary>Field number for the "amount" field.</summary>
@@ -388,7 +390,7 @@ namespace CurrencyConverter {
         return true;
       }
       if (!object.Equals(From, other.From)) return false;
-      if (!object.Equals(To, other.To)) return false;
+      if(!to_.Equals(other.to_)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Amount, other.Amount)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -398,7 +400,7 @@ namespace CurrencyConverter {
     public override int GetHashCode() {
       int hash = 1;
       if (from_ != null) hash ^= From.GetHashCode();
-      if (to_ != null) hash ^= To.GetHashCode();
+      hash ^= to_.GetHashCode();
       if (Amount != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Amount);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -422,10 +424,7 @@ namespace CurrencyConverter {
         output.WriteRawTag(10);
         output.WriteMessage(From);
       }
-      if (to_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(To);
-      }
+      to_.WriteTo(output, _repeated_to_codec);
       if (Amount != 0D) {
         output.WriteRawTag(25);
         output.WriteDouble(Amount);
@@ -444,10 +443,7 @@ namespace CurrencyConverter {
         output.WriteRawTag(10);
         output.WriteMessage(From);
       }
-      if (to_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(To);
-      }
+      to_.WriteTo(ref output, _repeated_to_codec);
       if (Amount != 0D) {
         output.WriteRawTag(25);
         output.WriteDouble(Amount);
@@ -465,9 +461,7 @@ namespace CurrencyConverter {
       if (from_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(From);
       }
-      if (to_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(To);
-      }
+      size += to_.CalculateSize(_repeated_to_codec);
       if (Amount != 0D) {
         size += 1 + 8;
       }
@@ -489,12 +483,7 @@ namespace CurrencyConverter {
         }
         From.MergeFrom(other.From);
       }
-      if (other.to_ != null) {
-        if (to_ == null) {
-          To = new global::CurrencyConverter.Currency();
-        }
-        To.MergeFrom(other.To);
-      }
+      to_.Add(other.to_);
       if (other.Amount != 0D) {
         Amount = other.Amount;
       }
@@ -525,10 +514,7 @@ namespace CurrencyConverter {
             break;
           }
           case 18: {
-            if (to_ == null) {
-              To = new global::CurrencyConverter.Currency();
-            }
-            input.ReadMessage(To);
+            to_.AddEntriesFrom(input, _repeated_to_codec);
             break;
           }
           case 25: {
@@ -562,10 +548,7 @@ namespace CurrencyConverter {
             break;
           }
           case 18: {
-            if (to_ == null) {
-              To = new global::CurrencyConverter.Currency();
-            }
-            input.ReadMessage(To);
+            to_.AddEntriesFrom(ref input, _repeated_to_codec);
             break;
           }
           case 25: {
@@ -615,9 +598,9 @@ namespace CurrencyConverter {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public CurrencyConversionResponse(CurrencyConversionResponse other) : this() {
       from_ = other.from_ != null ? other.from_.Clone() : null;
-      to_ = other.to_ != null ? other.to_.Clone() : null;
+      to_ = other.to_.Clone();
       initialAmount_ = other.initialAmount_;
-      convertedAmount_ = other.convertedAmount_;
+      convertedAmounts_ = other.convertedAmounts_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -641,14 +624,13 @@ namespace CurrencyConverter {
 
     /// <summary>Field number for the "to" field.</summary>
     public const int ToFieldNumber = 2;
-    private global::CurrencyConverter.Currency to_;
+    private static readonly pb::FieldCodec<global::CurrencyConverter.Currency> _repeated_to_codec
+        = pb::FieldCodec.ForMessage(18, global::CurrencyConverter.Currency.Parser);
+    private readonly pbc::RepeatedField<global::CurrencyConverter.Currency> to_ = new pbc::RepeatedField<global::CurrencyConverter.Currency>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::CurrencyConverter.Currency To {
+    public pbc::RepeatedField<global::CurrencyConverter.Currency> To {
       get { return to_; }
-      set {
-        to_ = value;
-      }
     }
 
     /// <summary>Field number for the "initial_amount" field.</summary>
@@ -663,16 +645,15 @@ namespace CurrencyConverter {
       }
     }
 
-    /// <summary>Field number for the "converted_amount" field.</summary>
-    public const int ConvertedAmountFieldNumber = 4;
-    private double convertedAmount_;
+    /// <summary>Field number for the "converted_amounts" field.</summary>
+    public const int ConvertedAmountsFieldNumber = 4;
+    private static readonly pbc::MapField<string, double>.Codec _map_convertedAmounts_codec
+        = new pbc::MapField<string, double>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForDouble(17, 0D), 34);
+    private readonly pbc::MapField<string, double> convertedAmounts_ = new pbc::MapField<string, double>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double ConvertedAmount {
-      get { return convertedAmount_; }
-      set {
-        convertedAmount_ = value;
-      }
+    public pbc::MapField<string, double> ConvertedAmounts {
+      get { return convertedAmounts_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -691,9 +672,9 @@ namespace CurrencyConverter {
         return true;
       }
       if (!object.Equals(From, other.From)) return false;
-      if (!object.Equals(To, other.To)) return false;
+      if(!to_.Equals(other.to_)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(InitialAmount, other.InitialAmount)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(ConvertedAmount, other.ConvertedAmount)) return false;
+      if (!ConvertedAmounts.Equals(other.ConvertedAmounts)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -702,9 +683,9 @@ namespace CurrencyConverter {
     public override int GetHashCode() {
       int hash = 1;
       if (from_ != null) hash ^= From.GetHashCode();
-      if (to_ != null) hash ^= To.GetHashCode();
+      hash ^= to_.GetHashCode();
       if (InitialAmount != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(InitialAmount);
-      if (ConvertedAmount != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(ConvertedAmount);
+      hash ^= ConvertedAmounts.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -727,18 +708,12 @@ namespace CurrencyConverter {
         output.WriteRawTag(10);
         output.WriteMessage(From);
       }
-      if (to_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(To);
-      }
+      to_.WriteTo(output, _repeated_to_codec);
       if (InitialAmount != 0D) {
         output.WriteRawTag(25);
         output.WriteDouble(InitialAmount);
       }
-      if (ConvertedAmount != 0D) {
-        output.WriteRawTag(33);
-        output.WriteDouble(ConvertedAmount);
-      }
+      convertedAmounts_.WriteTo(output, _map_convertedAmounts_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -753,18 +728,12 @@ namespace CurrencyConverter {
         output.WriteRawTag(10);
         output.WriteMessage(From);
       }
-      if (to_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(To);
-      }
+      to_.WriteTo(ref output, _repeated_to_codec);
       if (InitialAmount != 0D) {
         output.WriteRawTag(25);
         output.WriteDouble(InitialAmount);
       }
-      if (ConvertedAmount != 0D) {
-        output.WriteRawTag(33);
-        output.WriteDouble(ConvertedAmount);
-      }
+      convertedAmounts_.WriteTo(ref output, _map_convertedAmounts_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -778,15 +747,11 @@ namespace CurrencyConverter {
       if (from_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(From);
       }
-      if (to_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(To);
-      }
+      size += to_.CalculateSize(_repeated_to_codec);
       if (InitialAmount != 0D) {
         size += 1 + 8;
       }
-      if (ConvertedAmount != 0D) {
-        size += 1 + 8;
-      }
+      size += convertedAmounts_.CalculateSize(_map_convertedAmounts_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -805,18 +770,11 @@ namespace CurrencyConverter {
         }
         From.MergeFrom(other.From);
       }
-      if (other.to_ != null) {
-        if (to_ == null) {
-          To = new global::CurrencyConverter.Currency();
-        }
-        To.MergeFrom(other.To);
-      }
+      to_.Add(other.to_);
       if (other.InitialAmount != 0D) {
         InitialAmount = other.InitialAmount;
       }
-      if (other.ConvertedAmount != 0D) {
-        ConvertedAmount = other.ConvertedAmount;
-      }
+      convertedAmounts_.MergeFrom(other.convertedAmounts_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -844,18 +802,15 @@ namespace CurrencyConverter {
             break;
           }
           case 18: {
-            if (to_ == null) {
-              To = new global::CurrencyConverter.Currency();
-            }
-            input.ReadMessage(To);
+            to_.AddEntriesFrom(input, _repeated_to_codec);
             break;
           }
           case 25: {
             InitialAmount = input.ReadDouble();
             break;
           }
-          case 33: {
-            ConvertedAmount = input.ReadDouble();
+          case 34: {
+            convertedAmounts_.AddEntriesFrom(input, _map_convertedAmounts_codec);
             break;
           }
         }
@@ -885,18 +840,15 @@ namespace CurrencyConverter {
             break;
           }
           case 18: {
-            if (to_ == null) {
-              To = new global::CurrencyConverter.Currency();
-            }
-            input.ReadMessage(To);
+            to_.AddEntriesFrom(ref input, _repeated_to_codec);
             break;
           }
           case 25: {
             InitialAmount = input.ReadDouble();
             break;
           }
-          case 33: {
-            ConvertedAmount = input.ReadDouble();
+          case 34: {
+            convertedAmounts_.AddEntriesFrom(ref input, _map_convertedAmounts_codec);
             break;
           }
         }

@@ -9,15 +9,15 @@ message Currency{
 
 message CurrencyConversionRequest{
 	Currency from = 1;
-	Currency to = 2;
+	repeated Currency to = 2;
 	double amount = 3;
 }
 
 message CurrencyConversionResponse{
 	Currency from = 1;
-	Currency to = 2;
+	repeated Currency to = 2;
 	double initial_amount = 3;
-	double converted_amount = 4;
+	map<string,double> converted_amounts = 4;
 }
 
 service CurrencyConverterService{
