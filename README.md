@@ -40,7 +40,7 @@ converted_amount: Valor(es) convertido(s).
 
 - [Visual Studio](https://git-scm.com/)
 - [Currency API](https://currencyapi.com/)
-- [gRPC] (https://grpc.io/)
+- [gRPC](https://grpc.io/)
 
 #### Preparação do ambiente no computador para executar a API
 <p>Para a execução do projeto, é necessário que você possua uma API Key, que permitirá a consulta do server a API externa(Currency API).
