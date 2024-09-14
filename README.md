@@ -54,6 +54,7 @@ Encontra mais informações como gera-la, na documentação oficial (https://cur
         📄CurrencyConverterImpl.cs
 
 <p>Após a substituição, abra o terminal e rode o comando para buildar o projeto</p>
+
 ```
 $ dotnet build
 ```
