@@ -46,13 +46,14 @@ converted_amount: Valor(es) convertido(s).
 <p>Para a execução do projeto, é necessário que você possua uma API Key, que permitirá a consulta do server a API externa(Currency API).
 Encontra mais informações como gera-la, na documentação oficial (https://currencyapi.com/docs). De forma bem resumida, será necessário apenas fazer o login ou cadastro na plataforma deles, possuem um plano gratuito que te dará 300 requisições gratuitas. No dashboard da plataforma você verá alguma coisa parecida com isso cur_live_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX é essa que é sua API KEY.</p>
 <p>Já com a API KEY em mãos, acesse o arquivo CurrencyConverterImpl.cs e substitua o valor da apiKey para o que você agora possui.</p>
-📁client
-📂server
-    📁enums
-    📁models
-    📂services
-        📄CurrencyConverterImpl.cs
 
+    📁client
+    📂server
+        📁enums
+        📁models
+        📂services
+            📄CurrencyConverterImpl.cs
+                      
 <p>Após a substituição, abra o terminal e rode o comando para buildar o projeto</p>
 
 ```
@@ -60,9 +61,10 @@ $ dotnet build
 ```
 
 <p>No arquivo Program.cs do client, faça as substituições como quiser, e faça as conversões conforme julgue pertinente.</p>
-📂client
-    📄CurrencyConverterImpl.cs
-📁server
+
+    📂client
+        📄CurrencyConverterImpl.cs
+    📁server
 
 <p>Em seguida execute os projetos em modo de depuração.Inicialmente rode o server e depois o client. Ao final dessa operação, você já deve passar a visualizar os valores sendo disponibilizados em sua tela.</p>
 
